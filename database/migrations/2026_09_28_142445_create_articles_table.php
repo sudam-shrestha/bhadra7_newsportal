@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string("title");
             $table->string("slug");
-            $table->string("content");
+            $table->text("content");
             $table->string("image");
             $table->string("meta_title");
-            $table->string("meta_description");
+            $table->text("meta_description");
             $table->foreignId("author_id")->nullable()->constrained()->nullOnDelete();
             $table->timestamps();
         });
