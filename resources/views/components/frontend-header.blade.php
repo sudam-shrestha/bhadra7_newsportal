@@ -1,3 +1,8 @@
+@php
+    $limit_categories = $categories->take(6);
+    $remaining_categories = $categories->skip(6);
+@endphp
+
 <header>
     <div class="py-2 container flex justify-between items-center">
         <a href="{{ route('home') }}">
@@ -13,19 +18,39 @@
     <nav class="bg-(--primary) text-white py-4 text-xl">
         <div class="container hidden md:flex justify-between items-center">
             <div class="space-x-6">
-                <a href="">Home</a>
-                <a href="">समाचार</a>
-                <a href="">मनोरञ्जन</a>
-                <a href="">खेलकुद</a>
-                <a href="">विचार</a>
-                <a href="">शिक्षा</a>
-                <a href="">स्वास्थ्य</a>
-                <a href="">अर्थतन्त्र</a>
+                <a href="{{ route('home') }}">Home</a>
+                @foreach ($limit_categories as $category)
+                    <a href="{{ route('category', $category->slug) }}">{{ $category->title }}</a>
+                @endforeach
+                @if (count($remaining_categories) > 0)
+                    <button id="nav_dropdown" data-dropdown-toggle="dropdown"
+                        class="inline-flex gap-2 cursor-pointer items-center" type="button">
+                        more
+                        <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                            height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m19 9-7 7-7-7" />
+                        </svg>
+                    </button>
+
+                    <!-- Dropdown menu -->
+                    <div id="dropdown"
+                        class="z-10 hidden bg-neutral-primary-medium border border-default-medium rounded-base shadow-lg w-44">
+                        <ul class="p-2 text-sm text-body font-medium" aria-labelledby="nav_dropdown">
+                            @foreach ($remaining_categories as $cat)
+                                <li>
+                                    <a href="{{ route('category', $cat->slug) }}"
+                                        class="inline-flex items-center w-full p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded">{{ $cat->title }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
             </div>
 
-            <form action="" method="get" class="relative text-base">
-                <input type="text" name="q" id="q" class="bg-white text-(--text) py-2 px-4 rounded-full"
-                    placeholder="search article">
+            <form action="{{ route('search') }}" method="get" class="relative text-base">
+                <input type="text" name="q" id="q"
+                    class="bg-white text-(--text) py-2 px-4 rounded-full" placeholder="search article">
                 <button type="submit" class="absolute right-0 top-1/2 -translate-1/2 text-(--primary)"><i
                         class="fa-solid fa-magnifying-glass"></i></button>
             </form>
