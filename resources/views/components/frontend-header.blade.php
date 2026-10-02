@@ -3,14 +3,14 @@
     $remaining_categories = $categories->skip(6);
 @endphp
 
-<header>
+<header class="sticky top-0 bg-white z-20">
     <div class="py-2 container flex justify-between items-center">
         <a href="{{ route('home') }}">
             <img class="h-[40px] md:h-[80px]" src="{{ asset('frontend/images/logo.png') }}" alt="Jawaaf Logo">
         </a>
 
         <div>
-            <span class="text-sm md:text-xl">बुधबार, १४ असोज २०८३</span>
+            <span class="text-sm md:text-xl" id="date"></span>
             <img class="h-[10px] md:h-[20px]" src="{{ asset('frontend/images/line.png') }}" alt="Line">
         </div>
     </div>

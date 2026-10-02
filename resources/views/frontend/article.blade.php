@@ -1,4 +1,4 @@
-<x-frontend-layout>
+<x-frontend-layout title="{{ $article->title }}" description="{{ $article->meta_description }}" image="{{asset(Storage::url($article->image))}}">
     <section class="py-10">
         <div class="container space-y-8">
             <div class="grid grid-cols-3 gap-8">

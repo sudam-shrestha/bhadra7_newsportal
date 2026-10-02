@@ -1,4 +1,4 @@
-<x-frontend-layout>
+<x-frontend-layout title="{{ $category->title }}" description="{{ $category->meta_description }}">
     <section class="py-10">
         <div class="container space-y-8">
             <div>

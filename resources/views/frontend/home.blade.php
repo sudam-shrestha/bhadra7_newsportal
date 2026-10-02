@@ -1,4 +1,4 @@
-<x-frontend-layout>
+<x-frontend-layout title="Home" description="Jawaaf newsportal is khoi kkkkkkk">
 
     <section>
         <div class="container py-10">
