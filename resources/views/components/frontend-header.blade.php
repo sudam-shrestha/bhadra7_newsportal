@@ -18,9 +18,12 @@
     <nav class="bg-(--primary) text-white py-4 text-xl">
         <div class="container hidden md:flex justify-between items-center">
             <div class="space-x-6">
-                <a href="{{ route('home') }}">Home</a>
+                <a href="{{ route('home') }}"
+                    class="{{ Request::routeIs('home') ? 'text-(--secondary)' : '' }}">Home</a>
+
                 @foreach ($limit_categories as $category)
-                    <a href="{{ route('category', $category->slug) }}">{{ $category->title }}</a>
+                    <a href="{{ route('category', $category->slug) }}"
+                        class="{{ request()->routeIs('category') && request()->route('slug') == $category->slug ? 'text-(--secondary)' : '' }}">{{ $category->title }}</a>
                 @endforeach
                 @if (count($remaining_categories) > 0)
                     <button id="nav_dropdown" data-dropdown-toggle="dropdown"
